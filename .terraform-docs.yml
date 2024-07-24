@@ -1,0 +1,14 @@
+formatter: markdown table
+header-from: docs/header.md
+sort:
+  enabled: true
+  by: required
+settings:
+  indent: 4
+  escape: false
+  default: false
+  required: false
+  type: true
+output:
+  file: "README.md"
+  mode: replace

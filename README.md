@@ -1,3 +1,4 @@
+<!-- BEGIN_TF_DOCS -->
 # Terraform Sandbox Project Factory
 
 Simple use of the [Cloud Foundations Fabric](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/blob/master/modules/project/main.tf) project module.
@@ -13,58 +14,46 @@ Usage:
 terraform init
 terraform apply
 ```
-Copyright 2023 Google LLC
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-## Requirements
+#### Requirements
 
 No requirements.
 
-## Providers
+#### Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.38.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.5.1 |
+| <a name="provider_google"></a> [google](#provider_google) | 5.38.0 |
+| <a name="provider_local"></a> [local](#provider_local) | 2.5.1 |
 
-## Modules
+#### Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_project"></a> [project](#module\_project) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/project | n/a |
-| <a name="module_tfbucket"></a> [tfbucket](#module\_tfbucket) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/gcs | n/a |
+| <a name="module_project"></a> [project](#module_project) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/project | n/a |
+| <a name="module_tfbucket"></a> [tfbucket](#module_tfbucket) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/gcs | n/a |
 
-## Resources
+#### Resources
 
 | Name | Type |
 |------|------|
 | [google_folder.parent](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder) | resource |
 | [local_file.tfvars](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 
-## Inputs
+#### Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | The ID of the billing account to associate projects with. | `string` | n/a | yes |
-| <a name="input_inputs_location"></a> [inputs\_location](#input\_inputs\_location) | Inputs location | `string` | n/a | yes |
-| <a name="input_org_id"></a> [org\_id](#input\_org\_id) | GCP Organization ID | `string` | n/a | yes |
-| <a name="input_outputs_location"></a> [outputs\_location](#input\_outputs\_location) | Outputs location | `string` | n/a | yes |
-| <a name="input_parent_folder_name"></a> [parent\_folder\_name](#input\_parent\_folder\_name) | Organization's parent folder name | `string` | n/a | yes |
-| <a name="input_terraform_sa"></a> [terraform\_sa](#input\_terraform\_sa) | Service account used by terraform | `string` | n/a | yes |
-| <a name="input_tfbucket_location"></a> [tfbucket\_location](#input\_tfbucket\_location) | Terraform state buckets location | `string` | n/a | yes |
-| <a name="input_tfstate_bucket_name"></a> [tfstate\_bucket\_name](#input\_tfstate\_bucket\_name) | Bucket for storing terraform state | `string` | n/a | yes |
+| Name | Description | Type |
+|------|-------------|------|
+| <a name="input_billing_account"></a> [billing_account](#input_billing_account) | The ID of the billing account to associate projects with. | `string` |
+| <a name="input_inputs_location"></a> [inputs_location](#input_inputs_location) | Inputs location | `string` |
+| <a name="input_org_id"></a> [org_id](#input_org_id) | GCP Organization ID | `string` |
+| <a name="input_outputs_location"></a> [outputs_location](#input_outputs_location) | Outputs location | `string` |
+| <a name="input_parent_folder_name"></a> [parent_folder_name](#input_parent_folder_name) | Organization's parent folder name | `string` |
+| <a name="input_terraform_sa"></a> [terraform_sa](#input_terraform_sa) | Service account used by terraform | `string` |
+| <a name="input_tfbucket_location"></a> [tfbucket_location](#input_tfbucket_location) | Terraform state buckets location | `string` |
+| <a name="input_tfstate_bucket_name"></a> [tfstate_bucket_name](#input_tfstate_bucket_name) | Bucket for storing terraform state | `string` |
 
-## Outputs
+#### Outputs
 
 No outputs.
+<!-- END_TF_DOCS -->
