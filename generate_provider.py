@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 import json
-from jinja2 import Template
+from jinja2 import Template as jt
+from string import Template as st
 import glob
 import os
 import logging
@@ -27,7 +28,14 @@ def main():
   for tmpl in glob.glob(dirname + "/*.j2"):
       with open(tmpl, "r") as f:
           fname = tmpl.replace(".j2","")
-          Template(f.read()).stream(tf_vars).dump(fname)
+          jt(f.read()).stream(tf_vars).dump(fname)
+
+  for tmpl in glob.glob(dirname + "/*.tftpl"):
+      with open(tmpl, "r") as f:
+          fname = tmpl.replace(".tftpl",".tf")
+          template = st(f.read())
+          with open(fname, "w") as wf:
+            wf.write(template.substitute(tf_vars))
 
 if __name__ == '__main__':
   fmt = "%(asctime)s [%(threadName)s]: %(message)s"

@@ -24,6 +24,15 @@ locals {
         for p in keys(local.projects): 
             p => "${p}-iac"
     }
+    service_account_roles = flatten([
+      for pk, pv in local.projects: [
+        for sak, sav in pv.service_accounts:  {
+          name = sak
+          project = pk
+          roles = sav
+        }
+      ]
+    ])
 }
 
 
@@ -41,7 +50,28 @@ module "project" {
   default_service_account     = "disable"
   skip_delete                 = false
   services                    = each.value.services
-  iam_by_principals           = each.value.iam_by_principals
+}
+
+module "automation_service_account" {
+  source                      = "github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/iam-service-account"
+  for_each = local.projects
+  project_id = module.project[each.key].project_id
+  name       = each.value.automation_service_account_name
+  iam_project_roles = {
+      "${module.project[each.key].project_id}" = each.value.automation_service_account_roles
+    }
+}
+
+module "service-accounts" {
+  source                      = "github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/iam-service-account"
+  for_each = tomap({
+    for sa in local.service_account_roles: "${sa.project}.${sa.name}" => sa
+  })
+  project_id = each.value.project
+  name       = each.value.name
+  iam_project_roles = {
+      "${each.value.project}" = each.value.roles
+    }
 }
 
 module "tfbucket" {

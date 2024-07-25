@@ -5,6 +5,8 @@ Simple use of the [Cloud Foundations Fabric](https://github.com/GoogleCloudPlatf
 
 Creates projects based on template and sets up state bucket for these projects and automation account, so that the project contents can later on be managed separately.
 
+Inputs are yaml files stired under `inputs_location`. The factory outputs under `outputs_location` rendered backend, provider and tfvars.json files with data that can be used by a separate instances of terraform to manage the resources under the created projects.
+
 Prerequisites:
 - manually created `tfstate_bucket_name`, where the factory stores the state.
 
@@ -30,7 +32,9 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_automation_service_account"></a> [automation_service_account](#module_automation_service_account) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/iam-service-account | n/a |
 | <a name="module_project"></a> [project](#module_project) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/project | n/a |
+| <a name="module_service-accounts"></a> [service-accounts](#module_service-accounts) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/iam-service-account | n/a |
 | <a name="module_tfbucket"></a> [tfbucket](#module_tfbucket) | github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/gcs | n/a |
 
 #### Resources
@@ -38,6 +42,8 @@ No requirements.
 | Name | Type |
 |------|------|
 | [google_folder.parent](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder) | resource |
+| [local_file.backends](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.providers](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [local_file.tfvars](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 
 #### Inputs
@@ -55,5 +61,9 @@ No requirements.
 
 #### Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_backends"></a> [backends](#output_backends) | n/a |
+| <a name="output_providers"></a> [providers](#output_providers) | n/a |
+| <a name="output_tfvars"></a> [tfvars](#output_tfvars) | n/a |
 <!-- END_TF_DOCS -->
