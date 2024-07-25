@@ -1,17 +1,26 @@
 # Terraform Sandbox Project Factory
 
-Simple use of the [Cloud Foundations Fabric](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/blob/master/modules/project/main.tf) project module.
+This Terraform module provides a simple way to create and manage Google Cloud Platform (GCP) projects using the [Cloud Foundations Fabric](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/blob/master/modules/project/main.tf) project module.
 
-Creates projects based on template and sets up state bucket for these projects and automation account, so that the project contents can later on be managed separately.
+## Overview
 
-Inputs are yaml files stired under `inputs_location`. The factory outputs under `outputs_location` rendered backend, provider and tfvars.json files with data that can be used by a separate instances of terraform to manage the resources under the created projects.
+The factory creates projects based on a template and sets up a state bucket for each project, along with an automation account. This allows you to manage the resources within each project separately.
 
-Prerequisites:
-- manually created `tfstate_bucket_name`, where the factory stores the state.
+The factory uses YAML files stored in the `inputs_location` directory to define the project configurations. Projects are named after the definition files, with the `.yaml` extension removed. [Example input file](example.yaml)
 
-Usage:
-```
-./generate_provider.py
-terraform init
-terraform apply
-```
+The factory outputs the following files to the `outputs_location` directory:
+
+* **Backend configuration:** A `backend.tf` file containing the configuration for the Terraform backend, which is used to store the state of the project.
+* **Provider configuration:** A `providers.tf` file containing the configuration for the Google Cloud provider.
+* **Terraform variables:** A `tfvars.json` file containing the variables that are used to configure the project.
+
+## Usage
+
+1. **Prerequisites:**
+   * Create a Google Cloud Storage bucket to store the Terraform state. This bucket should be manually created and its name should be specified in the `tfstate_bucket_name` input variable.
+
+2. **Run the factory:**
+   * Copy the [terraform.tfvars.sample](terraform.tfvars.sample) file to `terraform.tfvars` and edit it with your project's details.
+   * Execute the `generate_provider.py` script to generate the Terraform configuration files.
+   * Initialize Terraform using the command `terraform init`.
+   * Apply the Terraform configuration using the command `terraform apply`.
