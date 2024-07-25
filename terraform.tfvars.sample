@@ -1,0 +1,8 @@
+terraform_sa         = "terraform@project-sandbox-1.iam.gserviceaccount.com"
+tfstate_bucket_name  = "project-sandboxes-iac001"   
+org_id               = "000000000000"         # format "000000000000"
+parent_folder_name   = "sandboxes"
+billing_account      = "000000-000000-000000" # format "000000-000000-000000"
+tfbucket_location    = "EU"   
+outputs_location     = "../sandbox-outputs"
+inputs_location      = "../sandbox-inputs"

@@ -1,0 +1,16 @@
+services: [
+    "cloudresourcemanager.googleapis.com",
+    "storage-api.googleapis.com",
+    "serviceusage.googleapis.com",
+]
+automation_service_account_name: "automation-sa"
+automation_service_account_roles: [
+    "roles/storage.admin",
+    "roles/storage.objectAdmin",
+    "roles/iam.serviceAccountUser"
+]
+service_accounts: {
+  "workload-sa": [
+    "roles/storage.objectAdmin"
+  ]
+}
